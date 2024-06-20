@@ -1,93 +1,106 @@
 "use client";
 import Image from "next/image";
+import { motion, useAnimation } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import fotoSintaCover from "../public/fotoSintaBaru.jpg";
+import Time from "./components/Time";
+import Doa from "./components/doa";
 
 export default function Home() {
+  const undanganRef = useRef(null);
+  const controls = useAnimation();
+  const [undanganOpened, setUndanganOpened] = useState(false);
+
+  const handleClickBukaUndangan = () => {
+    const deviceType = getDeviceType();
+    let yValue = -1000;
+
+    if (deviceType === "ipad") {
+      yValue = -1500; // Nilai untuk iPad
+    }
+
+    controls.start({ y: yValue });
+    undanganRef.current.scrollIntoView({ behavior: "smooth" });
+    setUndanganOpened(true);
+  };
+
+  const getDeviceType = () => {
+    const width = window.innerWidth;
+    if (width < 768) {
+      return "hp";
+    } else if (width >= 768 && width < 1024) {
+      return "ipad";
+    } else {
+      return "desktop";
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      controls.set({ y: getDeviceType() === "ipad" ? -1500 : -1000 });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [controls]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        
+    <div>
+      <div className="hidden lg:flex lg:justify-center lg:h-screen lg:items-center bg-pink-200">
+        <p className="text-black text-5xl font-semibold">
+          Harus Buka di Device lebih kecil yah
+        </p>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <motion.div
+        className="flex h-screen flex-col absolute inset-0 shadow-2xl"
+        animate={controls}
+        transition={{ duration: 2, ease: "easeInOut" }}
+      >
+        <motion.div
+          className="lg:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        >
+          <Image
+            src={fotoSintaCover}
+            alt="cover sinta"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            className="z-10 brightness-50"
+          />
+        </motion.div>
+        <div className="justify-center flex items-center">
+          <div className="lg:hidden block mt-48 absolute bottom-10 md:bottom-80 z-20">
+            <motion.div
+              className="text-center"
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <p className="font-playfair font-semibold text-4xl">
+                Gary & Kezia
+              </p>
+              <p className="font-medium text-sm">Kepada Bapak/Ibu/Saudara/i</p>
+              <div
+                className="py-2 bg-pink-700 mt-5 rounded-lg text-white cursor-pointer"
+                onClick={handleClickBukaUndangan}
+              >
+                <p className="font-bold text-lg">Buka Undangan</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+      <div ref={undanganRef}>
+        {undanganOpened && (
+          <div>
+            <Time />
+            <Doa />
+          </div>
+        )}
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
