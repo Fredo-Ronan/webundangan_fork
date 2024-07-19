@@ -1,9 +1,14 @@
-import { Inter } from "next/font/google";
+import { Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
 // import Image from "next/image";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+const dancingScript = Dancing_Script({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
+// const greatVibes = Great_Vibes({ weight: "400", subsets: ["latin"] });
 
 export const metadata = {
   title: "Undangan Nikah Sinta",
@@ -18,12 +23,16 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css"
+        ></link>
       </Head>
 
-      <body className={inter.className}>{children}</body>
+      <body className={dancingScript.className}>{children}</body>
     </html>
   );
 }

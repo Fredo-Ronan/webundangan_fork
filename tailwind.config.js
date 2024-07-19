@@ -13,8 +13,13 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        // poppins: ["Poppins", "sans-serif"],
-        playfair: ["'Playfair Display'", "serif"],
+        dancing: ["'Dancing Script'", "'"],
+      },
+      colors: {
+        pinkLight: "#FF90BC",
+        pinkLighter: "#FFC0D9",
+        cream: "#F9F9E0",
+        blueLight: "#8ACDD7",
       },
     },
   },
