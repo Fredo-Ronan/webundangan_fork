@@ -8,6 +8,10 @@ import FotoSinta from "../../public/Image Prewed Alone/Sinta.jpg";
 import Image from "next/image";
 
 export default function Pengantin() {
+  const shadowStyle = {
+    boxShadow: "0px 3px 15px 4px rgba(0,0,0,0.3)"
+  };
+
   return (
     <div className="h-auto bg-pinkLighter flex justify-center p-10 lg:hidden md:hidden">
       <div>
@@ -15,7 +19,7 @@ export default function Pengantin() {
           <div className="flex justify-center mb-5">
             <p className="text-white font-dancing text-4xl">The Bride</p>
           </div>
-          <div className="h-96 w-72 flex justify-center rounded-full shadow-lg shadow-black border-4 border-cream overflow-hidden">
+          <div className="h-96 w-72 flex justify-center rounded-full border-4 border-cream overflow-hidden" style={shadowStyle}>
             {/* <BrideCarousel /> */}
             <div className="h-auto overflow-hidden">
               <Image
@@ -35,7 +39,7 @@ export default function Pengantin() {
                 Putri Pertama Bapak Revi Ngongoloy & Ibu Monita Sarah
               </p>
               <div className="flex justify-center mt-2">
-                <div className="w-36 h-9 rounded-md border-4 flex justify-center items-center border-white bg-transparent shadow-xl shadow-black">
+                <div className="w-36 h-9 rounded-md border-4 flex justify-center items-center border-white bg-transparent" style={shadowStyle}>
                   <FontAwesomeIcon
                     icon={faInstagram}
                     size="lg"
@@ -57,7 +61,7 @@ export default function Pengantin() {
           <div className="flex justify-center mb-5">
             <p className="text-white font-dancing text-4xl">The Groom</p>
           </div>
-          <div className="h-96 w-72 flex justify-center rounded-full shadow-lg shadow-black border-4 border-cream overflow-hidden">
+          <div className="h-96 w-72 flex justify-center rounded-full border-4 border-cream overflow-hidden" style={shadowStyle}>
             {/* <GroomCarousel /> */}
             <div className="h-auto overflow-hidden">
               <Image
@@ -75,7 +79,7 @@ export default function Pengantin() {
                 Putra Ketiga Bapak Boyke Pangalila & Ibu Tinneke Keintjem
               </p>
               <div className="flex justify-center mt-2">
-                <div className="w-36 h-9 rounded-md border-4 flex justify-center items-center border-white bg-transparent shadow-xl shadow-black">
+                <div className="w-36 h-9 rounded-md border-4 flex justify-center items-center border-white bg-transparent" style={shadowStyle}>
                   <FontAwesomeIcon
                     icon={faInstagram}
                     size="lg"

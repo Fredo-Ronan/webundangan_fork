@@ -3,6 +3,10 @@ import Image from "next/image";
 import fotoPrewed from "../../public/rsvp/rsvpimage.jpg";
 
 export default function Rsvp() {
+  const shadowStyle = {
+    boxShadow: "0px 3px 15px 4px rgba(0,0,0,0.3)"
+  };
+
   return (
     <div className="h-auto lg:hidden relative md:hidden">
       <div className="absolute inset-0 -z-10">
@@ -20,7 +24,7 @@ export default function Rsvp() {
             <p className="text-gray-500 text-5xl">RSVP</p>
           </div>
           <div className="flex justify-center">
-            <div className="h-96 w-80 rounded-3xl shadow-lg shadow-gray-900 bg-white bg-opacity-60 px-6 py-5">
+            <div className="h-96 w-80 rounded-3xl bg-white bg-opacity-60 px-6 py-5" style={shadowStyle}>
               <div className="text-left text-black font-serif text-sm mt-6">
                 <p>
                   Berikan konfirmasi kehadiran Anda kepada pasangan pengantin

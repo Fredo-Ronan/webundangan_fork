@@ -5,6 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 export default function Date() {
+  const shadowStyle = {
+    boxShadow: "0px 3px 15px 4px rgba(0,0,0,0.3)"
+  };
+
+  const shadowStyleButton = {
+    boxShadow: "0px 3px 7px 2px rgba(0,0,0,0.3)"
+  }
+
   return (
     <div className="h-auto bg-gradient-to-b from-pinkLighter to-white md:hidden lg:hidden px-6 py-8">
       <div className="flex justify-center">
@@ -12,7 +20,7 @@ export default function Date() {
           <div className="mb-10 flex justify-center">
             <p className="font-dancing text-4xl">Wedding Event</p>
           </div>
-          <div className="h-auto bg-cream rounded-xl shadow-lg shadow-black">
+          <div className="h-auto bg-cream rounded-xl" style={shadowStyle}>
             <div className="relative h-80 w-full bg-white rounded-t-xl overflow-hidden">
               <Image
                 src={foto}
@@ -77,7 +85,7 @@ export default function Date() {
                   </p>
                 </div>
                 <div className="py-2 px-6 flex justify-center">
-                  <div className="w-24 h-8 bg-pinkLight border-2 border-white flex justify-center rounded-full items-center shadow-md shadow-black">
+                  <div className="w-24 h-8 bg-pinkLight border-2 border-white flex justify-center rounded-full items-center" style={shadowStyleButton}>
                     <a
                       className="text-white font-serif text-sm"
                       href="https://maps.app.goo.gl/kEQQ3y9p3ckhPNyd7"
@@ -117,7 +125,7 @@ export default function Date() {
                   </p>
                 </div>
                 <div className="py-2 px-6 flex justify-center">
-                  <div className="w-24 h-8 bg-pinkLight border-2 border-white flex justify-center rounded-full items-center shadow-md shadow-black">
+                  <div className="w-24 h-8 bg-pinkLight border-2 border-white flex justify-center rounded-full items-center" style={shadowStyleButton}>
                     <a
                       className="text-white font-serif text-sm"
                       href="https://maps.app.goo.gl/kEQQ3y9p3ckhPNyd7"
